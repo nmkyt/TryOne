@@ -6,26 +6,18 @@
 
 {% block content %}
         <div class="features">
-            <h1 class="features">Create account</h1>
-                <form action="{% url "registration" %}" method="post">
+            <h1 class="features"> Login to account</h1>
+                <form action="{% url "login" %}" method="post">
                     {% csrf_token %}
                     <label class="small mb-1" for="{{ form.username.id_for_label }}">
                         Username
                     </label>
                     {{ form.username }}
-                    <label class="small mb-1" for="{{ form.email.id_for_label }}">
-                        Email
-                    </label>
-                    {{ form.email }}
                     <label class="small mb-1" for="{{ form.password1.id_for_label }}">
                         Password
                     </label>
-                    {{ form.password1 }}
-                    <label class="small mb-1" for="{{ form.password2.id_for_label }}">
-                        Confirm password
-                    </label>
-                    {{ form.password2 }}
-                    <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+                    {{ form.password }}
+                    <input class="btn btn-primary btn-block" type="submit" value="Войти в аккаунт">
                 </form>
             </div>
         <div class="card-footer text-center">

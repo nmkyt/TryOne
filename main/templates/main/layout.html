@@ -21,6 +21,10 @@
             <a href="{% url 'about' %}"><li><i class="fas fa-address-card"></i> About</li></a>
             <a href=""><li><i class="fas fa-paper-plane"></i> Contacts</li></a>
         </ul>
+        <h3 class="login">
+            {% block auth %}
+            {% endblock %}
+        </h3>
     </aside>
     <main>
         {% block content %}

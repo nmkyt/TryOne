@@ -46,13 +46,37 @@ aside ul li:hover, aside ul a:hover {
 }
 
 main .features {
-    float: left;
+    float: right;
     color: #fff;
     margin-top: 100px;
-    text-align: center;
+    text-align: left;
     width: 75%;
 }
 
-main .features h1 {font-size: 50px}
-
+main .features h1 {
+    margin-top: 20px;
+    font-size: 50px;
+}
+main .features h3 {
+    font-size: 30px;
+}
 main .features p {max-width: 400px; margin: 20px auto}
+
+main .features form{
+    text-align: center;
+    margin-top: 170px;
+    margin-left: 200px;
+    float: none;
+    width: 50%;
+}
+
+main .features input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+aside .login {
+    margin-top: 400px;
+    font-size: 20px;
+}
+
