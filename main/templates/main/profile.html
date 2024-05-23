@@ -5,6 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1>PROFILE</h1>
-    <p>PROFILE</p>
+    <div class="profile">
+        <h1 class="profile">PROFILE</h1>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    </div>
+{% endblock %}
+
+{% block auth %}
+    <div class="login">
+        <ul>
+            <a href="{% url 'profile' %}"><li><i class="fa fa-user"></i> Profile</li></a>
+            <a href="{% url 'logout' %}"><li><i class="fa fa-user-times"></i> Logout</li></a>
+        </ul>
+    </div>
 {% endblock %}

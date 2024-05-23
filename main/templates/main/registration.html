@@ -27,12 +27,28 @@
                     {{ form.password2 }}
                     <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
                 </form>
+                        {% if form.errors %}
+                    <div class="errors">
+                        {% for field, errors in form.errors.items %}
+                            <p>Error: {{ errors|striptags }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
+            <a class="features" href="{% url 'login' %}">
+                Have account? Login!
+            </a>
         <div class="card-footer text-center">
         <div class="small">
         </div>
         </div>
 {% endblock %}
-    {#    <a href="{% url '' %}">#}
-    {#    Уже есть аккаунт? Авторизоваться#}
-    {#    </a>#}
+
+{% block auth %}
+    <div class="login">
+        <ul>
+            <a href="{% url 'registration' %}"><li><i class="fa fa-user-plus"></i> Registration</li></a>
+            <a href="{% url 'login' %}"><li><i class="fa fa-user"></i> Login</li></a>
+        </ul>
+    </div>
+{% endblock %}

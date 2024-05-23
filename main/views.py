@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from main.models import User
 from main.forms import RegisterForm
 from main.forms import LoginForm
+from django.contrib.auth import logout
 
 
 class Registration(CreateView):
@@ -19,12 +20,15 @@ class Login(LoginView):
     template_name = "main/login.html"
     model = User
     form_class = LoginForm
-    success_url = reverse_lazy("main/profile.html")
+
+    def get_success_url(self):
+        return reverse_lazy("profile")
 
 
 @login_required
 def profile_view(request):
-    return render(request, 'main/profile.html')
+    user = request.user
+    return render(request, 'main/profile.html', {'user': user})
 
 
 def index(request):
@@ -33,3 +37,8 @@ def index(request):
 
 def about(request):
     return render(request, 'main/about.html')
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse_lazy('home'))

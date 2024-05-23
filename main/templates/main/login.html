@@ -19,12 +19,16 @@
                     {{ form.password }}
                     <input class="btn btn-primary btn-block" type="submit" value="Войти в аккаунт">
                 </form>
+                {% if form.errors %}
+                    <div class="errors">
+                        {% for field, errors in form.errors.items %}
+                            <p>Error: {{ errors|striptags }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         <div class="card-footer text-center">
         <div class="small">
         </div>
         </div>
 {% endblock %}
-    {#    <a href="{% url '' %}">#}
-    {#    Уже есть аккаунт? Авторизоваться#}
-    {#    </a>#}
