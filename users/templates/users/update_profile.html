@@ -6,15 +6,12 @@
 
 {% block content %}
     <div class="profile">
-        <h1 class="profile">PROFILE</h1>
-        {% if user.profile_picture %}
-        <img class="profile" src="{{ user.profile_picture.url }}" alt="Profile Picture">
-        {% else %}
-        <p>No profile picture available.</p>
-        {% endif %}
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p><a class="btn btn-warning" href="{% url 'update_profile' %}">Edit Profile</a></p>
+        <h1 class="profile">UPDATE PROFILE</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-warning" type="submit">Save changes</button>
+        </form>
     </div>
 {% endblock %}
 

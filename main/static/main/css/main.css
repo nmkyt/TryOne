@@ -83,3 +83,11 @@ aside .login {
 .profile{
     color: white;
 }
+
+main .profile img{
+    width: 80px;
+    float: left;
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
