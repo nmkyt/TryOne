@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 
-from users.forms import RegisterForm, LoginForm, CustomUserChangeForm
+from users.forms import RegisterForm, LoginForm, CustomUserChangeForm, CustomUserDeleteForm
 from users.models import User
 
 
@@ -43,4 +43,15 @@ def update_profile(request):
         return render(request, 'users/update_profile.html', {'form': form})
 
 
-
+@login_required
+def delete_user(request):
+    if request.method == 'POST':
+        form = CustomUserDeleteForm(request.POST)
+        if form.is_valid() and form.cleaned_data['confirm']:
+            user = request.user
+            user.delete()
+            logout(request)
+            return redirect('home')
+    else:
+        form = CustomUserDeleteForm()
+        return render(request, 'users/delete_profile.html', {'form': form})

@@ -1,4 +1,3 @@
-
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django import forms
 from users.models import User
@@ -37,4 +36,8 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'profile_picture')
+
+
+class CustomUserDeleteForm(forms.Form):
+    confirm = forms.BooleanField(label="Are you sure you want to delete your account?")
 

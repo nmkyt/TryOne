@@ -6,13 +6,13 @@
 
 {% block content %}
     <div class="profile">
-        <h1 class="profile">UPDATE PROFILE</h1>
-        <form method="post" enctype="multipart/form-data">
+        <h1 class="profile">DELETE PROFILE</h1>
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn btn-warning" type="submit">Save changes</button>
+            <button class='btn btn-danger' type="submit">Delete my account</button>
         </form>
-        <a class="btn btn-danger" href="{% url 'delete_profile' %}"> Delete profile</a>
+        <a class='btn btn-warning' href="{% url 'profile' %}">Cancel</a>
     </div>
 {% endblock %}
 
