@@ -1,0 +1,25 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+	Main page
+{% endblock %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <h2 class="test">Typing Speed Test</h2>
+    <div class="test">
+        <p>{{ text_to_type }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="original_text" value="{{ text_to_type }}">
+            <input type="hidden" name="start_time" value="{{ start_time }}">
+            <label>
+                <textarea name="typed_text" rows="4" cols="50"></textarea>
+            </label>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+
+

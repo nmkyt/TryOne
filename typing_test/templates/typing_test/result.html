@@ -1,0 +1,18 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+	Main page
+{% endblock %}
+
+{% block content %}
+    <div class="test">
+        <h1>Typing Speed Test Results</h1>
+        <p>Original Text: {{ original_text }}</p>
+        <p>Your Text: {{ typed_text }}</p>
+        <p>Accuracy: {{ accuracy }}%</p>
+        <p>Speed: {{ speed }} CPM (characters per minute)</p>
+        <a class="btn btn-warning" href="{% url 'typing_test' %}">Try Again</a>
+    </div>
+{% endblock %}
+
+

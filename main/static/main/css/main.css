@@ -80,6 +80,15 @@ aside .login {
     font-size: 20px;
 }
 
+aside .login img{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 80px;
+    float: left;
+    height: 80px;
+}
+
+
 .profile{
     color: white;
 }
@@ -90,4 +99,9 @@ main .profile img{
     height: 80px;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.test{
+    color: white;
+    text-align: center;
 }

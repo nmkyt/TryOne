@@ -15,12 +15,3 @@
         <a class="btn btn-danger" href="{% url 'delete_profile' %}"> Delete profile</a>
     </div>
 {% endblock %}
-
-{% block auth %}
-    <div class="login">
-        <ul>
-            <a href="{% url 'profile' %}"><li><i class="fa fa-user"></i> Profile</li></a>
-            <a href="{% url 'logout' %}"><li><i class="fa fa-user-times"></i> Logout</li></a>
-        </ul>
-    </div>
-{% endblock %}

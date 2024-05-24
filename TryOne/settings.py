@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "main",
-    "users.apps.UsersConfig"
+    "main.apps.MainConfig",
+    "users.apps.UsersConfig",
+    "typing_test.apps.TypingTestConfig"
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "main/static",
 ]
 
 # Default primary key field type
