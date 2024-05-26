@@ -1,25 +1,62 @@
 {% extends "main/layout.html" %}
+{% load static %}
 
 {% block title %}
 	Main page
 {% endblock %}
 
 {% block content %}
-    <meta charset="UTF-8">
-    <h2 class="test">Typing Speed Test</h2>
-    <div class="test">
-        <p>{{ text_to_type }}</p>
-        <form method="post">
-            {% csrf_token %}
-            <input type="hidden" name="original_text" value="{{ text_to_type }}">
-            <input type="hidden" name="start_time" value="{{ start_time }}">
-            <label>
-                <textarea name="typed_text" rows="4" cols="50"></textarea>
-            </label>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
+<body class = "typing_text">
+    <h1>Typing Test</h1>
+    <div class="text" id="text">
+
     </div>
+    <form id="typingForm" method="post" action="{% url 'typing_test' %}">
+        {% csrf_token %}
+        <input type="hidden" name="typed_text" id="typed_text">
+        <input type="hidden" name="incorrect_characters" id="incorrect_characters">
+        <input type="hidden" name="original_text" value="{{ text_to_type }}">
+        <input type="hidden" name="start_time" value="{{ start_time }}">
+    </form>
+    <script>
+        const textContent = "{{ text_to_type }}";
+        const textContainer = document.getElementById('text');
+
+        textContent.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.id = 'char-' + index;
+            textContainer.appendChild(span);
+        });
+
+        let currentIndex = 0;
+        let typedText = "";
+        let incorrect_characters = 0;
+        document.getElementById('char-' + currentIndex).classList.add('current');
+
+        document.addEventListener('keydown', (event) => {
+            const currentChar = document.getElementById('char-' + currentIndex);
+            if (event.key === textContent[currentIndex]) {
+                currentChar.classList.remove('current');
+                currentChar.classList.remove('incorrect');
+                currentChar.classList.add('correct');
+                typedText += event.key;
+                currentIndex++;
+                if (currentIndex < textContent.length) {
+                    document.getElementById('char-' + currentIndex).classList.add('current');
+                }
+            } else {
+                currentChar.classList.add('incorrect');
+                document.getElementById('incorrect_characters').value++;
+            }
+            event.preventDefault();
+
+            if (currentIndex === textContent.length) {
+                document.getElementById('typed_text').value = typedText;
+                document.getElementById('typingForm').submit();
+            }
+        });    </script>
+</body>
 {% endblock %}
 
 

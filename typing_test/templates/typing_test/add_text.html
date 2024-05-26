@@ -1,0 +1,12 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+<div class = "typing_text">
+    <h1>Add Typing Text</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</div>
+{% endblock%}

@@ -1,0 +1,20 @@
+        .text span {
+            font-size: 24px;
+        }
+        .text .current {
+            background-color: yellow;
+        }
+        .text .correct {
+            color: green;
+        }
+        .text .incorrect {
+            color: red;
+        }
+        .text {
+            color: white;
+        }
+
+        .typing_text h1{
+            text-align: center;
+            color: white;
+        }

@@ -12,7 +12,10 @@
         {% else %}
         <p>No profile picture available.</p>
         {% endif %}
-        <p>Username: {{ user.username }}</p>
+        <span class>{{ user.username }}</span>
+        {% if user.groups.all %}
+        <span class="user-role">{% for group in user.groups.all %} {{ group }} {% endfor %}</span>
+        {% endif %}
         <p>Email: {{ user.email }}</p>
         <p><a class="btn btn-warning" href="{% url 'update_profile' %}">Edit Profile</a></p>
     </div>

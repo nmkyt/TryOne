@@ -105,3 +105,11 @@ main .profile img{
     color: white;
     text-align: center;
 }
+
+.user-role{
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}

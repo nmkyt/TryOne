@@ -1,26 +1,28 @@
 import random
 import time
-from django.shortcuts import render
+
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, redirect
+
+from .forms import TextForm
 from .models import TypingText
 
 
 def typing_test(request):
     if request.method == "POST":
-        typed_text = request.POST['typed_text']
+        incorrect_characters = request.POST['incorrect_characters']
         original_text = request.POST['original_text']
         start_time = float(request.POST['start_time'])
         end_time = time.time()
 
-        correct_characters = sum(1 for i, char in enumerate(typed_text) if i < len(original_text) and char == original_text[i])
-        accuracy = (correct_characters / len(original_text)) * 100
+        accuracy = 100 - (int(incorrect_characters) / len(original_text)) * 100
 
         elapsed_time = end_time - start_time
-        speed = round(len(typed_text) / (elapsed_time / 60))
+        speed = round(len(original_text) / (elapsed_time / 60))
 
         context = {
             'original_text': original_text,
-            'typed_text': typed_text,
-            'accuracy': accuracy,
+            'accuracy': round(accuracy),
             'speed': speed,
         }
         return render(request, 'typing_test/result.html', context)
@@ -34,3 +36,16 @@ def typing_test(request):
             'start_time': start_time,
         }
         return render(request, 'typing_test/typing_test.html', context)
+
+
+@login_required
+@permission_required('typing_test.add_text', raise_exception=True)
+def add_text(request):
+    if request.method == 'POST':
+        form = TextForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('typing_test')
+    else:
+        form = TextForm()
+    return render(request, 'typing_test/add_text.html', {'form': form})
