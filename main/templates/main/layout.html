@@ -22,7 +22,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'typing_test' %}"><li><i class="fas fa-address-card"></i> Typing Test</li></a>
             {% endif %}
-            <a href=""><li><i class="fas fa-paper-plane"></i> Contacts</li></a>
+            <a href={% url "contacts" %}><li><i class="fas fa-paper-plane"></i> Contacts</li></a>
         </ul>
         <h3 class="login">
             <ul>

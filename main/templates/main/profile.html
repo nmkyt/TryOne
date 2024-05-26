@@ -18,6 +18,10 @@
         {% endif %}
         <p>Email: {{ user.email }}</p>
         <p><a class="btn btn-warning" href="{% url 'update_profile' %}">Edit Profile</a></p>
+        {% if user.groups.all %}
+            <p>You can add or edit texts in DataBase with moderator rights.</p>
+            <a class="btn btn-success" href="{% url 'add_text' %}">Edit texts</a>
+        {% endif %}
     </div>
 {% endblock %}
 

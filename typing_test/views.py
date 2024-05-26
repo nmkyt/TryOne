@@ -49,3 +49,4 @@ def add_text(request):
     else:
         form = TextForm()
     return render(request, 'typing_test/add_text.html', {'form': form})
+
